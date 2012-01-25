@@ -12,6 +12,6 @@ make msp430watch.elf
 
 To program the code:
 
-make msp430watch.program
+sudo make msp430watch.program
 
 Nava Whiteford - new at 41j dot com
