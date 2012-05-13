@@ -12,5 +12,8 @@ all: $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $<
 
+%.program: %.elf
+	mspdebug uif -d /dev/ttyUSB0 $<
+
 clean:
 	rm *.o *.elf
