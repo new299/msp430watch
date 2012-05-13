@@ -1,5 +1,5 @@
 You can read about the project here: http://41j.com/blog/2011/09/msp430-watch/
 
-This code is probably woefully broken.
+This code is probably woefully broken. You need to comment/uncomment code depending on the lcd type (3310 or 3530)
 
 Nava Whiteford - new at 41j dot com

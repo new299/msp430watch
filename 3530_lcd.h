@@ -30,6 +30,14 @@
 #define paddle_thickness	4
 #define paddle_length		15
 
+void LCD_init(void);
+void fillScreen(unsigned char color);
+void draw_char(unsigned char c,unsigned char x,unsigned char y,unsigned char size);
+void draw_number(unsigned char number, unsigned char x,unsigned char y,unsigned char size);
+void draw_number_binary(unsigned char number, unsigned char x,unsigned char y);
+void draw_char(unsigned char c,unsigned char x,unsigned char y,unsigned char size);
+
+
 /**Device Information**
 * MPS430 F2013        *
 * Power=3.3v          *
@@ -49,7 +57,7 @@
 *   have suggested 1uf)      *
 *****************************/
 
-//LCD_Out function comes from source code found here:
+//LCD_out function comes from source code found here:
 //http://hobbyelektronik.org/Elo/AVR/3510i/index.htm
 //Unfortunately this is the only way I know to attribute
 //this code to the writer.
@@ -71,7 +79,8 @@ void delay_ms(unsigned int n)
   }
 }
 
-void LCD_Out(unsigned char Data, unsigned char isCmd) {
+
+void LCD_out(unsigned char Data, unsigned char isCmd) {
     if(isCmd) LCD_PORT |= LCD_CS; 
     LCD_PORT &= ~(LCD_CLK|LCD_CS);  //Clock and CS low
 
@@ -88,6 +97,7 @@ void LCD_Out(unsigned char Data, unsigned char isCmd) {
     }
 }
 
+
 void LCD_init(void)
 {
   LCD_DDR |= (LCD_CLK | LCD_SIO | LCD_CS | LCD_RST);
@@ -100,34 +110,34 @@ void LCD_init(void)
   LCD_PORT |= (LCD_CLK | LCD_SIO | LCD_CS);
 
   //Software Reset
-  LCD_Out(0x01, 1);
+  LCD_out(0x01, 1);
   delay_ms(50);
 
 
 // ORIG COMMENT
   //Refresh set
-//  LCD_Out(0xB9, 1);
-//  LCD_Out(0x00, 0);
+//  LCD_out(0xB9, 1);
+//  LCD_out(0x00, 0);
 
 
   //Display Control
-  LCD_Out(0xB6, 0);
-  LCD_Out(128, 0);
-  LCD_Out(128, 0);
-  LCD_Out(129, 0);
-  LCD_Out(84, 0);
-  LCD_Out(69, 0);
-  LCD_Out(82, 0);
-  LCD_Out(67, 0);
+  LCD_out(0xB6, 0);
+  LCD_out(128, 0);
+  LCD_out(128, 0);
+  LCD_out(129, 0);
+  LCD_out(84, 0);
+  LCD_out(69, 0);
+  LCD_out(82, 0);
+  LCD_out(67, 0);
 
 /*
   //Temperature gradient set
-  LCD_Out(0xB7, 1);
-  for(char i=0; i<14; i++)  LCD_Out(0, 0);
+  LCD_out(0xB7, 1);
+  for(char i=0; i<14; i++)  LCD_out(0, 0);
 */
 
   //Booster Voltage On
-  LCD_Out(0x03, 1);
+  LCD_out(0x03, 1);
   delay_ms(50);  //NOTE: At least 40ms must pass between voltage on and display on.
           //Other operations may be carried out as long as the display is off
           //for this length of time.
@@ -135,42 +145,42 @@ void LCD_init(void)
 
 /*
   //Test Mode
-  LCD_Out(0x04, 1);
+  LCD_out(0x04, 1);
 */
 
 //ORIGCOMMENT
   // Power Control
-//  LCD_Out(0xBE, 1);
-//  LCD_Out(4, 0);
+//  LCD_out(0xBE, 1);
+//  LCD_out(4, 0);
 
 
   //Sleep Out
-  LCD_Out(0x11, 1);
+  LCD_out(0x11, 1);
 
   //Display mode Normal
-  LCD_Out(0x13, 1);
+  LCD_out(0x13, 1);
 
   //Display On
-  LCD_Out(0x29, 1);
+  LCD_out(0x29, 1);
 
   //Set Color Lookup Table
-  LCD_Out(0x2D, 1);        //Red and Green (3 bits each)
+  LCD_out(0x2D, 1);        //Red and Green (3 bits each)
   char x, y;
   
   for(y = 0; y < 2; y++) {
       for(x = 0; x <= 14; x+=2) {
-          LCD_Out(x, 0);
+          LCD_out(x, 0);
       }
   }
   //Set Color Lookup Table    //Blue (2 bits)
-  LCD_Out(0, 0);
-  LCD_Out(4, 0);
-  LCD_Out(9, 0);
-  LCD_Out(14, 0);
+  LCD_out(0, 0);
+  LCD_out(4, 0);
+  LCD_out(9, 0);
+  LCD_out(14, 0);
 
   //Set Pixel format to 8-bit color codes
-  LCD_Out(0x3A, 1);
-  LCD_Out(0b00000010, 0);
+  LCD_out(0x3A, 1);
+  LCD_out(0b00000010, 0);
 
 //***************************************
 //Initialization sequence from datasheet:
@@ -213,20 +223,21 @@ void LCD_init(void)
 }
 
 
+
 void fillScreen(unsigned char color)
 {
-  LCD_Out(0x2A, 1); //Set Column location
-  LCD_Out(0, 0);
-  LCD_Out(97, 0);
-  LCD_Out(0x2B, 1); //Set Row location
-  LCD_Out(0, 0);
-  LCD_Out(66, 0);
-  LCD_Out(0x2C, 1); //Write Data
-  for (int i=0; i<6566; i++) LCD_Out(color, 0);
+  LCD_out(0x2A, 1); //Set Column location
+  LCD_out(0, 0);
+  LCD_out(97, 0);
+  LCD_out(0x2B, 1); //Set Row location
+  LCD_out(0, 0);
+  LCD_out(66, 0);
+  LCD_out(0x2C, 1); //Write Data
+  for (int i=0; i<6566; i++) LCD_out(color, 0);
 }
 
 
-void draw_char(unsigned char c,unsigned char x,unsigned char y,unsigned char size);
+
 void draw_number(unsigned char number, unsigned char x,unsigned char y,unsigned char size) {
 
   unsigned char t = number/100;
@@ -252,6 +263,8 @@ void draw_number_binary(unsigned char number, unsigned char x,unsigned char y) {
   }
 }
 
+
+
 void draw_char(unsigned char c,unsigned char x,unsigned char y,unsigned char size) {
   unsigned char bitfont[19] = { 0b11110110 ,0b11011111 ,0b10010010 ,0b01011111 ,0b10011111 ,0b00111111 ,0b00111100 ,0b11111001 ,0b00110111 ,0b01011110 ,0b01110011 ,0b11110100 ,0b11110111 ,0b11110010 ,0b01001001 ,0b11110111 ,0b11011111 ,0b11101111 ,0b00100100 };
 
@@ -266,15 +279,15 @@ unsigned char bitfont[73] = { 0b11110110 ,0b11011111 ,0b10010010 ,0b01011111 ,0b
   unsigned char byte_pos = (15*c)/8;
   unsigned char bit_pos  = (15*c)%8;
 
-  LCD_Out(0x2A, 1);
-  LCD_Out(x, 0);
-  LCD_Out(x+(3*size)-1, 0);
+  LCD_out(0x2A, 1);
+  LCD_out(x, 0);
+  LCD_out(x+(3*size)-1, 0);
 
-  LCD_Out(0x2B, 1);
-  LCD_Out(y, 0);
-  LCD_Out(y+(5*size)-1, 0);
+  LCD_out(0x2B, 1);
+  LCD_out(y, 0);
+  LCD_out(y+(5*size)-1, 0);
 
-  LCD_Out(0x2C, 1);
+  LCD_out(0x2C, 1);
 
   unsigned char line_start_bit_pos = bit_pos;
   unsigned char line_start_byte_pos = byte_pos;
@@ -292,11 +305,11 @@ unsigned char bitfont[73] = { 0b11110110 ,0b11011111 ,0b10010010 ,0b01011111 ,0b
       }
 
       if(bitfont[byte_pos] & (1<<(7-bit_pos))) {
-	LCD_Out(0xFF, 0); //no - draw background in white
-        if(size == 2) LCD_Out(0xFF, 0);
+	LCD_out(0xFF, 0); //no - draw background in white
+        if(size == 2) LCD_out(0xFF, 0);
       } else {
-	LCD_Out(0x00, 0); //yes - draw it in black
-        if(size == 2) LCD_Out(0x00, 0); 
+	LCD_out(0x00, 0); //yes - draw it in black
+        if(size == 2) LCD_out(0x00, 0); 
       }
 
       bit_pos++;
@@ -305,71 +318,4 @@ unsigned char bitfont[73] = { 0b11110110 ,0b11011111 ,0b10010010 ,0b01011111 ,0b
       if(((c%3) == 2) && (c>0)) s++;
       if(s==size) s = 0;
   }
-}
-
-unsigned char hours=1;
-unsigned char mins=1;
-unsigned char secs=1;
-
-unsigned char mode1=0;
-unsigned char mode2=0;
-
-void check_input() {
-
-  if((P1IN & 0x40) == 0) mode1++;
-  if((P1IN & 0x80) == 0) mode2 = 1;
-                    else mode2 = 0;
-
-  if(mode1 == 4) mode1 = 0;
-
-  if((mode1 == 1 ) && mode2) { mins++;}
-  if((mode1 == 2 ) && mode2) {hours++;}
-  if(hours  == 24) hours=0;
-  if(mins   == 60) {mins=0;}
-}
-
-int main(void) {
-
-  WDTCTL = WDTPW + WDTHOLD;	// Stop WDT
-
-  LCD_init();
-  
-  fillScreen(0x00);
-
-// BCSCTL1 = CALBC1_1MHZ;
-// DCOCTL = CALDCO_1MHZ;
-
-  CCTL0 = CCIE;
-  CCR0 = 32767;
-  TACTL = TASSEL_1 + MC_1;// + ID_1 + ID_2;
-  // Watch crystal is attached
-  
-  _BIS_SR(GIE);
-  
-  unsigned char c = 0;
-  while(1) {
-    draw_number(hours,20,20,2);
-    draw_number(mins ,50,20,2);
-    draw_number(secs ,80,20,2);
-
-    draw_number(mode1 ,10,10,1);
-    draw_number(mode2 ,10, 0,1);
-
-    draw_number_binary(hours ,60,40);
-    draw_number_binary(mins  ,60,46);
-    draw_number_binary(secs  ,60,52);
-
-    check_input();
-
-   // draw_char(c,60,10,1);
-   // if(c==36) c=0; else c++;
-  }
-
-}
-
-interrupt(TIMERA0_VECTOR) TimerA_procedure(void) {
-  secs++;
-  if(secs  ==60)  {secs=0;mins++;}
-  if(mins  ==60)  {mins=0;hours++;}
-  if(hours ==24)  {hours=0;}
 }
