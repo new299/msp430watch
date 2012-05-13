@@ -1,4 +1,4 @@
-CC=~/msp430/bin/msp430-gcc
+CC=msp430-gcc
 CFLAGS=-Os -Wall -mmcu=msp430x2013 -std=gnu99
 
 OBJS=main.o 
