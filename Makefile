@@ -1,7 +1,7 @@
 CC=msp430-gcc
 CFLAGS=-Os -Wall -mmcu=msp430x2013 -std=gnu99
 
-OBJS=main_colourlcd.elf main_3310test.elf
+OBJS=msp430watch.elf
 
 all: $(OBJS)
 	

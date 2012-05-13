@@ -1,6 +1,5 @@
 echo -n "unsigned char bitfont[X] = {"
 awk '{printf $0}' bitfont | sed 's/0/0A/g' | sed 's/1/1A/g' | awk 'BEGIN{n=0;RS="A";}{if(n == 0) printf " 0b"; else if(n%8==0) printf " ,0b"; printf $0;n++;}'
 echo " };"
-#unsigned char Hello_World[5][5] = {
-#    0b10101110, 0b10010001, 0b00101010, 0b01001110, 0b01001100,
-  
+
+#this script converts the bitfont file into a C array.
