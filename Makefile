@@ -1,14 +1,16 @@
 CC=msp430-gcc
 CFLAGS=-Os -Wall -mmcu=msp430x2013 -std=gnu99
 
-OBJS=main.o 
-
+OBJS=main_colourlcd.elf main_3310test.elf
 
 all: $(OBJS)
-	$(CC) $(CFLAGS) -o main.elf $(OBJS)
+	
+
+%.elf: %.o
+	$(CC) $(CFLAGS) -o $@ $<
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $<
 
 clean:
-	rm -fr main.elf $(OBJS)
+	rm *.o *.elf
