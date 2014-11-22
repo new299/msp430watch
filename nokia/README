@@ -1,0 +1,17 @@
+You can read about the project here: http://41j.com/blog/2011/09/msp430-watch/
+
+This code is probably woefully broken. You need to comment/uncomment code depending on the lcd type (3310 or 3530)
+
+Requires msp430gcc and mspdebug. On Ubuntu 12.04 they can be installed with:
+
+sudo apt-get install mspdebug gcc-msp430
+
+To build:
+
+make msp430watch.elf
+
+To program the code:
+
+sudo make msp430watch.program
+
+Nava Whiteford - new at 41j dot com
