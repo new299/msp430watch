@@ -1,5 +1,5 @@
 CC=msp430-gcc
-CFLAGS=-Os -Wall -mmcu=msp430x2013 -std=gnu99
+CFLAGS=-Os -Wall -mmcu=msp430f2013 -std=gnu99
 
 OBJS=msp430watch.elf
 
@@ -13,7 +13,7 @@ all: $(OBJS)
 	$(CC) $(CFLAGS) -c $<
 
 %.program: %.elf
-	mspdebug uif -d /dev/ttyUSB0 "prog $<"
+	mspdebug uif -d /dev/ttyUSB1 "prog $<"
 
 clean:
 	rm *.o *.elf
