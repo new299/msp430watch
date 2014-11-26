@@ -4,7 +4,6 @@ CFLAGS=-Os -Wall -mmcu=msp430f2013 -std=gnu99
 OBJS=msp430watch.elf
 
 all: $(OBJS)
-	
 
 %.elf: %.o
 	$(CC) $(CFLAGS) -o $@ $<
@@ -17,3 +16,7 @@ all: $(OBJS)
 
 clean:
 	rm *.o *.elf
+
+temp:
+	msp430-gcc -Os -Wall -mmcu=msp430f2013 -std=gnu99 msp430x20x3_usi_07.c 
+	sudo mspdebug uif -d /dev/ttyUSB14 "prog ./a.out"
