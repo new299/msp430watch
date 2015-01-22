@@ -1,0 +1,101 @@
+Cmp-Mod V01 Created by Cvpcb (2014-11-17 BZR 5289)-product   date = Thu 22 Jan 2015 08:57:44 AM EST
+
+BeginCmp
+TimeStamp = /54C16B66;
+Reference = BT1;
+ValeurCmp = BATTERY;
+IdModule  = sw:BC2003-CR2032;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C0EA1F;
+Reference = C1;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C0E89C;
+Reference = C2;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C0E8EB;
+Reference = C3;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C09C2B;
+Reference = P1;
+ValeurCmp = BARO;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x05;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C09BB3;
+Reference = P2;
+ValeurCmp = ESP8266;
+IdModule  = Pin_Headers:Pin_Header_Straight_2x04;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C0E66A;
+Reference = P3;
+ValeurCmp = I2C LCD;
+IdModule  = sw:01x09_2mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C1164B;
+Reference = P4;
+ValeurCmp = PROG;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x04;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C15467;
+Reference = SW1;
+ValeurCmp = SW_PUSH;
+IdModule  = sw:SIDE_SW666;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C154A2;
+Reference = SW2;
+ValeurCmp = SW_PUSH;
+IdModule  = sw:SIDE_SW666;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C154E8;
+Reference = SW3;
+ValeurCmp = SW_PUSH;
+IdModule  = sw:SIDE_SW666;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C15531;
+Reference = SW4;
+ValeurCmp = SW_PUSH;
+IdModule  = sw:SIDE_SW666;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C0B6ED;
+Reference = U1;
+ValeurCmp = MSP430F2013;
+IdModule  = SMD_Packages:TSSOP-14;
+EndCmp
+
+BeginCmp
+TimeStamp = /54C0B91D;
+Reference = X1;
+ValeurCmp = CRYSTAL;
+IdModule  = Crystals:Crystal_Round_Horizontal_2mm;
+EndCmp
+
+EndListe

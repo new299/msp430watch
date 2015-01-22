@@ -161,11 +161,28 @@ int main(void)
     if(n==13) MST_Data1 = (uint8_t) 0x40;
     if(n==13) MST_Data2 = 'H';
     if(n==14) MST_Data1 = (uint8_t) 0x40;
-    if(n==14) MST_Data2 = 'H';
+    if(n==14) MST_Data2 = (uint8_t) 'H';
     if(n==15) MST_Data1 = (uint8_t) 0x40;
     if(n==15) MST_Data2 = (uint8_t) 'H';
     if(n==16) MST_Data1 = (uint8_t) 0x40;
-    if(n==16) MST_Data2 = 'H';
+    if(n==16) MST_Data2 = (uint8_t) 'H';
+    if(n==17) MST_Data1 = (uint8_t) 0x40;
+    if(n==17) MST_Data2 = (uint8_t) 'H';
+    if(n==18) MST_Data1 = (uint8_t) 0x40;
+    if(n==18) MST_Data2 = (uint8_t) 'H';
+    if(n==19) MST_Data1 = (uint8_t) 0x40;
+    if(n==19) MST_Data2 = (uint8_t) 'H';
+    if(n==20) MST_Data1 = (uint8_t) 0x40;
+    if(n==20) MST_Data2 = (uint8_t) 'H';
+    if(n==21) MST_Data1 = (uint8_t) 0x40;
+    if(n==21) MST_Data2 = (uint8_t) 'H';
+
+    const int row_offsets[] = { 0x00, 0x40, 0x14, 0x54 };
+
+    if(n==22) MST_Data1 = 0x00;
+    if(n==22) MST_Data2 = LCD_SETDDRAMADDR | (1 + row_offsets[1]);
+    if(n==23) MST_Data1 = (uint8_t) 0x40;
+    if(n==23) MST_Data2 = 'H';
 
     P1OUT |= 0x01;
     __delay_cycles(500);
